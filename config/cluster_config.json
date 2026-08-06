@@ -1,0 +1,23 @@
+{
+  "cluster_name": "streaming-portfolio",
+  "spark_version": "14.3.x-scala2.12",
+  "node_type_id": "Standard_DS3_v2",
+  "num_workers": 0,
+  "autotermination_minutes": 30,
+  "spark_conf": {
+    "spark.master": "local[*]",
+    "spark.databricks.cluster.profile": "singleNode",
+    "spark.databricks.delta.optimizeWrite.enabled": "true",
+    "spark.databricks.delta.autoCompact.enabled": "true",
+    "spark.sql.shuffle.partitions": "8",
+    "fs.azure.account.auth.type.yourstorageaccount.dfs.core.windows.net": "OAuth",
+    "fs.azure.account.oauth.provider.type.yourstorageaccount.dfs.core.windows.net": "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
+    "fs.azure.account.oauth2.client.id.yourstorageaccount.dfs.core.windows.net": "{{secrets/kv-scope/sp-client-id}}",
+    "fs.azure.account.oauth2.client.secret.yourstorageaccount.dfs.core.windows.net": "{{secrets/kv-scope/sp-client-secret}}",
+    "fs.azure.account.oauth2.client.endpoint.yourstorageaccount.dfs.core.windows.net": "https://login.microsoftonline.com/{{secrets/kv-scope/tenant-id}}/oauth2/token"
+  },
+  "custom_tags": {
+    "project": "portfolio",
+    "owner": "swati"
+  }
+}

@@ -1,0 +1,35 @@
+# Secrets — never commit these
+.env
+*.pem
+*.key
+local.settings.json
+**/secrets.json
+**/*credential*
+**/*connectionstring*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Generated data
+landing/
+data/landing/
+*.csv
+*.parquet
+!docs/**/*.csv
+
+# Spark / Delta local artefacts
+spark-warehouse/
+metastore_db/
+derby.log
+_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

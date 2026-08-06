@@ -1,0 +1,28 @@
+{
+  "eventhub": {
+    "namespace": "your-namespace",
+    "topic": "clickstream",
+    "secretScope": "kv-scope",
+    "secretKey": "eventhub-connection-string",
+    "maxOffsetsPerTrigger": 5000
+  },
+  "lake": {
+    "account": "yourstorageaccount",
+    "container": "lakehouse",
+    "bronzePath": "bronze/clickstream",
+    "silverPath": "silver/clickstream",
+    "quarantinePath": "silver/clickstream_quarantine",
+    "goldPath": "gold/clickstream_metrics",
+    "checkpointRoot": "_checkpoints"
+  },
+  "streaming": {
+    "watermarkDelay": "10 minutes",
+    "windowSize": "5 minutes",
+    "triggerMode": "availableNow",
+    "processingTimeInterval": "30 seconds"
+  },
+  "dataQuality": {
+    "validEventTypes": ["page_view", "click", "scroll", "add_to_cart", "purchase"],
+    "maxDurationMs": 1800000
+  }
+}

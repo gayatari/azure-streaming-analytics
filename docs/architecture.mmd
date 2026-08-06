@@ -1,0 +1,11 @@
+flowchart LR
+    P["Event Producer<br/>(Python)"] -->|AMQP / Kafka| EH["Azure Event Hubs<br/>clickstream"]
+    EH -->|readStream<br/>maxOffsetsPerTrigger| B["Bronze<br/>raw payload (Delta)"]
+    B -->|from_json + DQ rules| S["Silver<br/>validated (Delta)"]
+    B -.->|failed rules| Q["Quarantine<br/>(Delta)"]
+    S -->|watermark + tumbling window| G["Gold<br/>5-min metrics (Delta)"]
+    G --> PBI["Power BI"]
+    KV["Azure Key Vault"] -.->|secret scope| B
+    CP[("Checkpoints<br/>ADLS Gen2")] -.-> B
+    CP -.-> S
+    CP -.-> G
